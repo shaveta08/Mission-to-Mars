@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Mission To Mars</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+    <body>
+            <div class="jumbotron text-center">
+                <h1>Mission To Mars</h1>
+                <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape</a>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1><strong> Latest Mars News</strong></h1>
+                        <h3><strong>{{result.title}}</strong></h3>
+                        <h4>{{result.description}}</h4>
+                    </div>
+                </div>
+                <h2>Featured Mars Image</h2>
+                <div class="row justify-content-md-around">
+
+                    <div class="col-md-8">
+                        
+                        <img src="{{result.featured_link}}" alt="BasicImage" width="700" height="500"/>
+                    </div>
+                    <br>
+                    <div class="col-md-4">
+                        <h2>Mars Facts</h2>
+                        <table class="table table-bordered table-striped" style="width:fit-content">
+                            <thead>
+                                <tr>
+                                <th>Mars Facts</th>
+                                <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in result.mars_facts %}
+                                <tr>
+                                <td>{{i.fact}}</td>
+                                <td>{{i.value}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <h1 style="margin-left: 35%;"><strong>Mars Hemisphere</strong></h1>
+                <div class="row justify-content-md-around">
+                    {% for i in result.hemi_links_header1 %}
+                    <div class="col-md-4">
+                        <div class=card>
+                            <img class="card-img-top" src="{{i.img_url}}" alt="img" width="200" height="300"/>
+                            <div class="card-body">
+                                <h3 class="card-title">{{i.title}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                    
+                <div class="row justify-content-md-around">
+                    {% for i in result.hemi_links_header2 %}
+                    <div class="col-md-4">
+                        <div class=card>
+                            <img class="card-img-top" src="{{i.img_url}}" alt="img" width="200" height="300"/>
+                            <div class="card-body">
+                                <h3 class="card-title">{{i.title}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+
+
+            </div>
+            
+    </body>
+</html>
